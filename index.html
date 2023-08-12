@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>年号 Converter!</title>
+<style>
+	body {
+    	padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .main {
+    	display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 80vw;
+        padding: 0;
+        margin: 0;
+    }
+    	button {
+    	cursor: pointer;
+    }
+    
+    input {
+    	width: fit-content;
+    }
+    
+    input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button {  
+   		opacity: 1;
+	}
+    
+    .color-converter__reverse svg {
+    	fill: purple;
+    	height: 40px;
+    	opacity: .8;
+    	transition: stroke .3s;
+    	width: 40px;
+	}
+    
+    .color-converter__reverse {
+    	cursor: pointer;
+	}
+    
+    .rowTime {
+    	display: flex;
+        flex-direction: row;
+    }
+    
+    .japanize, .westernize {
+    	display: flex;
+        flex-direction: column;
+    }
+</style>
+</head>
+<body>
+<!--h1 style="background-color: red;">和暦 -> 西暦</h1-->
+<div class="main">
+	<div class="japanize">
+    	<div class="rowTime">
+        	<div class="prompt">
+        		<h2>西暦</h2>
+        		<label for="yearWest">年: </label><input type="number" min="1844" max="2023" step="1" value="2023" name="yearWest"></input>
+        	</div>
+            
+        	<div class="color-converter__reverse"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" svg-inline="" role="presentation" focusable="false" tabindex="-1"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6a5.87 5.87 0 01-2.8-.7l-1.46 1.46A7.93 7.93 0 0012 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46A7.93 7.93 0 0012 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path></svg></div>
+            
+        	<div class="result">
+        		<h2>和暦</h2>
+            	<p></p>
+        	</div>
+		</div>
+        <br>
+    	<button class="japanesifyBtn">和暦ize!</button>
+    </div>
+    
+	<div class="westernize" style="display: none">
+		<div class="rowTime">
+        	<div class="prompt">
+        		<h2>和暦</h2>
+                <select>
+					<option>--</option>
+				</select>
+				<span class="inputReveal" style="display: none"><input type="number" min="1" max="64" step="1" value="1" name="yearJapan"></input></span>
+        		<span>年</span>
+			</div>
+            <div class="color-converter__reverse"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" svg-inline="" role="presentation" focusable="false" tabindex="-1"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6a5.87 5.87 0 01-2.8-.7l-1.46 1.46A7.93 7.93 0 0012 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46A7.93 7.93 0 0012 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path></svg></div>
+            <div class="result">
+            	<h2>西暦</h2>
+                <p></p>
+            </div>
+		</div>
+        <br>
+        <button class="westernizeBtn">西暦ize!</button>
+	</div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+	const eraRanges = [
+			{ era: "弘化", yomi: "こうか", min: 1844, max: 1848 },
+			{ era: "嘉永", yomi: "かえい", min: 1848, max: 1855 },
+			{ era: "安政", yomi: "あんせい", min: 1855, max: 1860 },
+			{ era: "万延", yomi: "まんえん", min: 1860, max: 1861 },
+			{ era: "文久", yomi: "ぶんきゅう", min: 1861, max: 1864 },
+			{ era: "元治", yomi: "げんじ", min: 1864, max: 1865 },
+			{ era: "慶応", yomi: "けいおう", min: 1865, max: 1868 },
+			{ era: "明治", yomi: "めいじ", min: 1868, max: 1912 },
+			{ era: "大正", yomi: "たいしょう", min: 1912, max: 1926 },
+			{ era: "昭和", yomi: "しょうわ", min: 1926, max: 1989 },
+			{ era: "平成", yomi: "へいせい", min: 1989, max: 2019 },
+			{ era: "令和", yomi: "れいわ", min: 2019, max: 2099 },
+		];
+        
+        
+	$(eraRanges).each(function(_, era) {
+    	let newOption = $('<option>', { value: era.era, text: era.era });
+    	$('.westernize select').append(newOption);
+	});
+    
+    $("select").change(function() {
+    	$(".inputReveal").show();
+    	let selectedEra = $(this).val();
+        let eraData = eraRanges.find(e => e.era === selectedEra);
+        if (eraData) {
+            $("input[name=yearJapan]").attr("max", eraData.max - eraData.min + 1);
+        }
+		$("input[name=yearJapan]").val(1); //Reset the value to 1
+    });  
+    
+    $("input[name=yearJapan]").on('input', function() {
+        let maxAllowed = parseInt($(this).attr("max"));
+        let currentValue = parseInt($(this).val());
+        if (currentValue > maxAllowed) {
+            $(this).val(maxAllowed);
+        }
+    }); ///limits to max
+    
+    $("button").click(function(){
+		if ($(this).hasClass("westernizeBtn")) {
+			let jidai = $(this).closest('.main').find('select option:selected').text();
+			let year = parseInt($(this).closest('.main').find('input[name="yearJapan"]').val());
+			let eraData = eraRanges.find(e => e.era === jidai);
+			if (eraData) {
+				let convertedYear = eraData.min + (year - 1);
+				$(this).closest('.westernize').find('.result p').html(convertedYear);
+			}
+		}
+        
+        if ($(this).hasClass("japanesifyBtn")) {
+    		let year = parseInt($(this).closest('.main').find('input[name="yearWest"]').val());
+    		let matchingEras = eraRanges.filter(e => year >= e.min && year <= e.max);
+    		if (matchingEras.length > 0) {
+        		let eraNames = matchingEras.map(e => `${e.era}${year - e.min + 1}年`).join('</p><p>'); // Use <p> tags for separate paragraphs
+        		eraNames = `<p>${eraNames}</p>`; // Wrap the era names in <p> tags
+                 $(this).closest('.japanize').find('.result p').html(eraNames);
+    		} else {
+        		alert("No matching era found.");
+    		}
+		}
+	});
+    
+    $("svg").click(function(){
+    	$(".japanize").toggle();
+        $(".westernize").toggle();
+    });
+});
+</script>
+
+</body>
+</html>
