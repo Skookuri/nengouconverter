@@ -7,24 +7,30 @@
 <title>年号 Converter!</title>
 <style>
 	body {
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    	background-attachment: fixed;
+    	background-position: center top; 
+    	min-height: 100vh;
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	justify-content: center;
+    	margin: 0;
     	padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
     
     .main {
-    	display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 80vw;
-        padding: 0;
-        margin: 0;
+    	margin: 0 auto;
+    	background-color: rgba(255,255,255,0.5);
+    	width: fit-content;
+    	padding: 10px;
+    	position: relative;
+    	top: 50%;
+    	transform: translateY(-50%);
     }
-    	button {
+    
+    button {
     	cursor: pointer;
     }
     
@@ -106,18 +112,18 @@
 <script>
 $(document).ready(function(){
 	const eraRanges = [
-			{ era: "弘化", yomi: "こうか", min: 1844, max: 1848 },
-			{ era: "嘉永", yomi: "かえい", min: 1848, max: 1855 },
-			{ era: "安政", yomi: "あんせい", min: 1855, max: 1860 },
-			{ era: "万延", yomi: "まんえん", min: 1860, max: 1861 },
-			{ era: "文久", yomi: "ぶんきゅう", min: 1861, max: 1864 },
-			{ era: "元治", yomi: "げんじ", min: 1864, max: 1865 },
-			{ era: "慶応", yomi: "けいおう", min: 1865, max: 1868 },
-			{ era: "明治", yomi: "めいじ", min: 1868, max: 1912 },
-			{ era: "大正", yomi: "たいしょう", min: 1912, max: 1926 },
-			{ era: "昭和", yomi: "しょうわ", min: 1926, max: 1989 },
-			{ era: "平成", yomi: "へいせい", min: 1989, max: 2019 },
-			{ era: "令和", yomi: "れいわ", min: 2019, max: 2099 },
+			{ era: "弘化", yomi: "こうか", min: 1844, max: 1848, img: "https://gyazo.com/f8d03f642d707412a129d8b263aeb4b5/max_size/1000" }, //弘化2-3年（1845-46)
+			{ era: "嘉永", yomi: "かえい", min: 1848, max: 1855, img: "https://ch.kanagawa-museum.jp/uploads/202108_ippin.jpg" }, //嘉永6年（1853)
+			{ era: "安政", yomi: "あんせい", min: 1855, max: 1860, img: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Kawaraban-of-1855-Ansei-Edo-earthquake.png" },//安政江戸地震
+			{ era: "万延", yomi: "まんえん", min: 1860, max: 1861, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Japanese-Embassy-to-the-United-States-Group-Photo-1860.png/1920px-Japanese-Embassy-to-the-United-States-Group-Photo-1860.png" }, //https://ja.wikipedia.org/wiki/%E4%B8%87%E5%BB%B6%E5%85%83%E5%B9%B4%E9%81%A3%E7%B1%B3%E4%BD%BF%E7%AF%80
+			{ era: "文久", yomi: "ぶんきゅう", min: 1861, max: 1864, img: "https://bakumatsu.org/img/00043_l.jpg" }, //fukuzawa yukichi
+			{ era: "元治", yomi: "げんじ", min: 1864, max: 1865, img: "http://www.morimiya.net/online/ukiyoe/kyousai/saiyuki.jpg" }, //http://www.morimiya.net/online/ukiyoe-syousai/U781.html
+			{ era: "慶応", yomi: "けいおう", min: 1865, max: 1868, img: "https://www.jalan.net/jalan/images/pictLL/Y5/L348385/L3483850001671730.jpg" }, //sakamoto ryouma
+			{ era: "明治", yomi: "めいじ", min: 1868, max: 1912, img: "https://imgc.eximg.jp/i=https%253A%252F%252Fs.eximg.jp%252Fexnews%252Ffeed%252FJapaaan%252FJapaaan_105465_7.png,quality=70,type=jpg" },
+			{ era: "大正", yomi: "たいしょう", min: 1912, max: 1926, img: "https://www.cosmetic-culture.po-holdings.co.jp/2022/10/13/61d9be2410448de358e7081c4019b1dc4e1be67e.jpg" },
+			{ era: "昭和", yomi: "しょうわ", min: 1926, max: 1989, img: "https://www.sponichi.co.jp/entertainment/news/2022/11/01/jpeg/20221101s00041000163000p_view.webp" },
+			{ era: "平成", yomi: "へいせい", min: 1989, max: 2019, img: "https://i.pinimg.com/736x/a4/3e/c0/a43ec0107e3e2f89fbd23c5c77782091.jpg" },
+			{ era: "令和", yomi: "れいわ", min: 2019, max: 2099, img: "https://lifull-homes-press.s3.ap-northeast-1.amazonaws.com/uploads/press/2019/04/pixta_49527450_S-600x426.jpg" },
 		];
         
         
@@ -146,14 +152,17 @@ $(document).ready(function(){
     
     $("button").click(function(){
 		if ($(this).hasClass("westernizeBtn")) {
-			let jidai = $(this).closest('.main').find('select option:selected').text();
-			let year = parseInt($(this).closest('.main').find('input[name="yearJapan"]').val());
-			let eraData = eraRanges.find(e => e.era === jidai);
-			if (eraData) {
-				let convertedYear = eraData.min + (year - 1);
-				$(this).closest('.westernize').find('.result p').html(convertedYear);
-			}
-		}
+        	let jidai = $(this).closest('.main').find('select option:selected').text();
+        	let year = parseInt($(this).closest('.main').find('input[name="yearJapan"]').val());
+        	let eraData = eraRanges.find(e => e.era === jidai);
+        	if (eraData) {
+            	let convertedYear = eraData.min + (year - 1);
+            	$(this).closest('.westernize').find('.result p').html(convertedYear);
+
+            	let imgLink = "url('" + eraData.img + "')"; // Retrieve img link from eraData
+            	$("body").css("background-image", imgLink);
+        	}
+    	}
         
         if ($(this).hasClass("japanesifyBtn")) {
     		let year = parseInt($(this).closest('.main').find('input[name="yearWest"]').val());
