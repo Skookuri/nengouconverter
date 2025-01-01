@@ -73,7 +73,7 @@
     	<div class="rowTime">
         	<div class="prompt">
         		<h2>西暦</h2>
-        		<input type="number" min="1844" max="2023" step="1" value="2023" name="yearWest"></input>年
+        		<input type="number" min="1844" max="2025" step="1" value="2025" name="yearWest"></input>年
         	</div>
             
         	<div class="color-converter__reverse"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" svg-inline="" role="presentation" focusable="false" tabindex="-1"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6a5.87 5.87 0 01-2.8-.7l-1.46 1.46A7.93 7.93 0 0012 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46A7.93 7.93 0 0012 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path></svg></div>
@@ -167,8 +167,8 @@ $(document).ready(function(){
     		let year = parseInt($(this).closest('.main').find('input[name="yearWest"]').val());
     		let matchingEras = eraRanges.filter(e => year >= e.min && year <= e.max);
     		if (matchingEras.length > 0) {
-        		let eraNames = matchingEras.map(e => `${e.era}${year - e.min + 1}年`).join('</p><p>'); // Use <p> tags for separate paragraphs
-        		eraNames = `<p>${eraNames}</p>`; // Wrap the era names in <p> tags
+        		let eraNames = matchingEras.map(e => `${e.era}${year - e.min + 1}年`).join('</p><p>');
+        		eraNames = `<p>${eraNames}</p>`;
                  $(this).closest('.japanize').find('.result p').html(eraNames);
                  let eraData = matchingEras[0]; // Get the first matching era data
         		 let imgLink = "url('" + eraData.img + "')";
