@@ -1,6 +1,97 @@
 {
   "ERAS": [
     {
+      "era": "元和",
+      "yomi": "げんな",
+      "min": 1615,
+      "max": 1624,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "寛永",
+      "yomi": "かんえい",
+      "min": 1624,
+      "max": 1644,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "正保",
+      "yomi": "しょうほう",
+      "min": 1645,
+      "max": 1648,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "慶安",
+      "yomi": "けいあん",
+      "min": 1648,
+      "max": 1652,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "承応",
+      "yomi": "じょうおう",
+      "min": 1652,
+      "max": 1655,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "明暦",
+      "yomi": "めいれき",
+      "min": 1655,
+      "max": 1658,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "万治",
+      "yomi": "まんじ",
+      "min": 1658,
+      "max": 1661,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "寛文",
+      "yomi": "かんぶん",
+      "min": 1661,
+      "max": 1673,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "延宝",
+      "yomi": "えんぽう",
+      "min": 1673,
+      "max": 1681,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "天和",
+      "yomi": "てんわ",
+      "min": 1681,
+      "max": 1684,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "貞享",
+      "yomi": "じょうきょう",
+      "min": 1684,
+      "max": 1688,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "元禄",
+      "yomi": "げんろく",
+      "min": 1688,
+      "max": 1704,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
+      "era": "宝永",
+      "yomi": "ほうえい",
+      "min": 1704,
+      "max": 1711,
+      "img": "https://images.squarespace-cdn.com/content/v1/5a01e2deace86448e1314168/4d1b57ae-afff-459d-980e-d129dd53dc12/294596905_530031635478728_6749548886996135164_n.jpg"
+    },
+    {
       "era": "正徳",
       "yomi": "しょうとく",
       "min": 1711,
